@@ -3,9 +3,24 @@
     <header>
       <h1>My Friends</h1>
     </header>
+    <new-friend @add-contact="addContact"></new-friend>
     <ul>
-      <friend-contact></friend-contact>
-      <friend-contact></friend-contact>
+      <friend-contact
+        v-for="friend in friends"
+        :key="friend.id"
+        :id="friend.id"
+        :name="friend.name"
+        :phone-number="friend.phone"
+        :email-address="friend.email"
+        :is-favorite="friend.isFavorite"
+        @toggle-favorite="toggleFavoriteStatus"
+        @delete="deleteContact"
+      ></friend-contact>
+      <!-- <friend-contact
+        name="Julie Jones"
+        phone-number="0987 12311"
+        email-address="julie@localhost.com"
+      ></friend-contact> -->
     </ul>
   </section>
 </template>
@@ -16,19 +31,43 @@ export default {
     return {
       friends: [
         {
-          id: "manuel",
-          name: "Manuel Lorenz",
-          phone: "0123 45678 90",
-          email: "manuel@localhost.com",
+          id: 'manuel',
+          name: 'Manuel Lorenz',
+          phone: '0123 45678 90',
+          email: 'manuel@localhost.com',
+          isFavorite: true,
         },
         {
-          id: "julie",
-          name: "Julie Jones",
-          phone: "0987 654421 21",
-          email: "julie@localhost.com",
+          id: 'julie',
+          name: 'Julie Jones',
+          phone: '0987 654421 21',
+          email: 'julie@localhost.com',
+          isFavorite: false,
         },
       ],
     };
+  },
+
+  methods: {
+    toggleFavoriteStatus(friendId) {
+      const indentifiedFriend = this.friends.find(
+        (friend) => friend.id === friendId
+      );
+      indentifiedFriend.isFavorite = !indentifiedFriend.isFavorite;
+    },
+    addContact(name, phone, email) {
+      const newFriendContact = {
+        id: new Date().toISOString(),
+        name: name,
+        phone: phone,
+        email: email,
+        isFavorite: false,
+      };
+      this.friends.push(newFriendContact);
+    },
+    deleteContact(friendId) {
+      this.friends = this.friends.filter((friend) => friend.id !== friendId);
+    },
   },
 };
 </script>
@@ -38,7 +77,7 @@ export default {
   box-sizing: border-box;
 }
 html {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 body {
   margin: 0;
@@ -59,7 +98,8 @@ header {
   padding: 0;
   list-style: none;
 }
-#app li {
+#app li,
+#app form {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem auto;
   border-radius: 10px;
