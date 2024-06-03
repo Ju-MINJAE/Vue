@@ -4,7 +4,7 @@
       :topic-title="activeTopic && activeTopic.title"
       :text="activeTopic && activeTopic.fullText"
     ></active-element>
-    <knowledge-base @select-topic="activateTopic"></knowledge-base>
+    <knowledge-base></knowledge-base>
   </div>
 </template>
 
@@ -34,9 +34,13 @@ export default {
   },
 
   // provide(제공) : 부모 컴포넌트에서 props를 제공
+  // 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달하거나,
+  // 부모-자식 계층 구조를 따르지 않는 컴포넌트 간에 데이터를 공유하는데 사용.
+  // 주로 복잡한 컴포넌트 구조에서 다양한 컴포넌트 간에 데이터를 공유하거나 전역 상태 관리와 유사한 기능을 구현할 때 사용.
   provide() {
     return {
       topics: this.topics,
+      selectTopic: this.activateTopic,
     };
   },
 
