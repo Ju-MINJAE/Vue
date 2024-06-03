@@ -1,23 +1,21 @@
 <template>
   <section>
-    <h2>JuMinJae</h2>
-    <h3>27 Years</h3>
+    <h2>{{ username }}</h2>
+    <h3>{{ userage }} Years</h3>
   </section>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
+  props: {
+    username: {
+      type: String,
+      required: true,
+    },
+    userage: {
+      type: Number,
+      required: true,
+    },
   },
 };
 </script>
-
-<style>
-section {
-  margin: 2rem auto;
-  max-width: 40rem;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-}
-</style>
