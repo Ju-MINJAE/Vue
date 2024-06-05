@@ -4,6 +4,7 @@
       v-for="res in resources"
       :key="res.id"
       :title="res.title"
+      :id="res.id"
       :description="res.description"
       :link="res.link"
     ></learning-resource>
@@ -14,7 +15,7 @@
 import LearningResource from './LearningResource.vue';
 
 export default {
-  props: ['resources'],
+  inject: ['resources'],
 
   components: { LearningResource },
 };
