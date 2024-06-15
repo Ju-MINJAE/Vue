@@ -48,6 +48,7 @@ export default {
   created() {
     // this.$route.path // /trams/t1
     this.loadTeamMembers(this.teamId);
+    console.log(this.$route.query);
   },
 
   watch: {

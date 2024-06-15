@@ -12,7 +12,12 @@ export default {
 
   computed: {
     teamMembersLink() {
-      return '/teams/' + this.id;
+      // return '/teams/' + this.id + ?sort=asc;
+      return {
+        name: 'team-members',
+        params: { teamId: this.id },
+        query: { sort: 'asc' },
+      }; //가독성, 유지관리 장점
     },
   },
 };
