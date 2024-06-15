@@ -11,7 +11,7 @@ const router = createRouter({
   routes: [
     { path: '/teams', component: TeamsList }, //our-domain.com///teams
     { path: '/users', component: UserList }, //our-domain.com///users
-    { path: '/teams/:teamId', component: TeamMembers },
+    { path: '/teams/:teamId', component: TeamMembers, props: true },
   ],
   linkActiveClass: 'active',
 });
