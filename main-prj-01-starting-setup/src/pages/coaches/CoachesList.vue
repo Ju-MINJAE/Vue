@@ -1,5 +1,5 @@
 <template>
-  <section>FILTER</section>
+  <coach-filter></coach-filter>
   <section>
     <base-card>
       <div class="controls">
@@ -16,9 +16,6 @@
           :rate="coach.hourlyRate"
           :areas="coach.areas"
         ></coach-item>
-        <!-- <li v-for="coach in fillteredCoaches" :key="coach.id">
-          {{ coach.firstName }}
-        </li> -->
       </ul>
       <h3 v-else>No coaches found.</h3>
     </base-card>
@@ -27,9 +24,10 @@
 
 <script>
 import CoachItem from '../../components/coaches/CoachItem.vue';
+import CoachFilter from '../../components/coaches/CoachFilter.vue';
 
 export default {
-  components: { CoachItem },
+  components: { CoachItem, CoachFilter },
   computed: {
     fillteredCoaches() {
       return this.$store.getters['coaches/coaches'];
